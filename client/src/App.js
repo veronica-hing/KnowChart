@@ -1,23 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
+import Flow from './components/Flow';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* size specified here otherwise the flow doesnt render properly */}
+      <div style={{width:'90%', height:'60vh',border: 'solid 2px red'}}>
+        <Flow/>
+      </div>
     </div>
   );
 }
