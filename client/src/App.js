@@ -1,15 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
-import Flow from './components/Flow';
+import FlowEditor from './views/FlowEditor';
+import LoginReg from './views/LoginReg';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      {/* size specified here otherwise the flow doesnt render properly */}
-      <div style={{width:'90%', height:'60vh',border: 'solid 2px red'}}>
-        <Flow/>
-      </div>
-    </div>
+      <Routes>
+        <Route path="/" element={ <LoginReg />} />
+        <Route path = "/knowchart" element = {<FlowEditor/>} />
+      </Routes>
   );
 }
 

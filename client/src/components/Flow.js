@@ -6,6 +6,7 @@ import ReactFlow, {
   useEdgesState,
   Controls,
 } from 'react-flow-renderer';
+import OptionBar from './OptionsBar';
 
 import Sidebar from './Sidebar';
 
@@ -63,7 +64,7 @@ const Flow = () => {
   );
 
   return (
-    <div className="dndflow">
+    <div className="dndflow" style={{width:'90%', height:'60vh',border: 'solid 2px red'}}>
       <ReactFlowProvider>
         <div className="reactflow-wrapper" ref={reactFlowWrapper}>
           <ReactFlow
@@ -80,7 +81,14 @@ const Flow = () => {
             <Controls />
           </ReactFlow>
         </div>
-        <Sidebar />
+        <aside>
+          <OptionBar
+            setNodes = {setNodes}
+            setEdges = {setEdges}
+            rfInstance = {reactFlowInstance}
+            setRfInstance = {setReactFlowInstance} />
+          <Sidebar />
+        </aside>
       </ReactFlowProvider>
     </div>
   );
