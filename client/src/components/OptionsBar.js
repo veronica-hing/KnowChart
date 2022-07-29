@@ -1,4 +1,5 @@
 import React, {useCallback } from 'react';
+import axios from "axios";
 import { useReactFlow } from 'react-flow-renderer';
 
 import '../App.css';
@@ -13,10 +14,17 @@ const OptionBar = (props) => {
 
     const onSave = () => {
         console.log('onsave clicked')
+        //check if it's not there, post a new one
         if (props.rfInstance) {
-            console.log('saving flow to object in local storage');
+            console.log('saving flow to object in database now');
             const flow = props.rfInstance.toObject();
-            localStorage.setItem(flowKey, JSON.stringify(flow));
+            axios.post('http://localhost:8000/api/knowchart', {
+                name: "TestName to change later",
+                data: JSON.stringify(flow)
+            })
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+            //localStorage.setItem(flowKey, JSON.stringify(flow));
         }
     };
 

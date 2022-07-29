@@ -1,4 +1,6 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import ReactFlow, {
   ReactFlowProvider,
   addEdge,
@@ -23,10 +25,32 @@ let id = 0;
 const getId = () => `dndnode_${id++}`;
 
 const Flow = () => {
+  const { knowChartID } = useParams();
   const reactFlowWrapper = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  //the reactFlowInstance is what we save to the DB
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
+  //get the stuff from the database to put in our onload function
+  useEffect( () => {
+    const restoreFlow = async () => {
+      axios.get('http://localhost:8000/api/knowchart/'+ knowChartID)
+      .then(res => {
+        const loadedFlow = JSON.parse(res.data.data);
+        console.log(loadedFlow);
+        setReactFlowInstance(loadedFlow);//CHANGEME
+        setEdges(loadedFlow.edges || []);
+        setNodes(loadedFlow.nodes || []);
+      })
+      // .then(()=>{
+      //   setNodes(reactFlowInstance.nodes || []);
+      //   setEdges(reactFlowInstance.edges || []);
+      // })
+    };
+    if(typeof knowChartID === 'string'){
+      restoreFlow();
+    }
+  },[]);
 
   const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 
@@ -38,7 +62,6 @@ const Flow = () => {
   const onDrop = useCallback(
     (event) => {
       event.preventDefault();
-
       const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect();
       const type = event.dataTransfer.getData('application/reactflow');
 
@@ -65,6 +88,7 @@ const Flow = () => {
 
   return (
     <div className="dndflow" style={{width:'90%', height:'60vh',border: 'solid 2px red'}}>
+      {/* <p>{knowChartID}</p> */}
       <ReactFlowProvider>
         <div className="reactflow-wrapper" ref={reactFlowWrapper}>
           <ReactFlow
@@ -86,7 +110,8 @@ const Flow = () => {
             setNodes = {setNodes}
             setEdges = {setEdges}
             rfInstance = {reactFlowInstance}
-            setRfInstance = {setReactFlowInstance} />
+            setRfInstance = {setReactFlowInstance}
+          />
           <Sidebar />
         </aside>
       </ReactFlowProvider>
