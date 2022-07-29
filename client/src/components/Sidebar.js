@@ -8,16 +8,11 @@ const Sidebar = () => {
 
   return (
     <div>
-      <div className="description">You can drag these nodes to the other pane.</div>
-      <div className="dndnode input" onDragStart={(event) => onDragStart(event, 'input')} draggable>
-        Input Node
+      <div className="description">You can drag a node to the other pane and edit text</div>
+      <div className="dndnode" onDragStart={(event) => onDragStart(event, 'textNode')} draggable>
+        texty node
       </div>
-      <div className="dndnode" onDragStart={(event) => onDragStart(event, 'default')} draggable>
-        Default Node
-      </div>
-      <div className="dndnode output" onDragStart={(event) => onDragStart(event, 'output')} draggable>
-        Output Node
-      </div>
+      <div className="description">You need to double click the node after typing to save the text...</div>
     </div>
   );
 };

@@ -41,8 +41,8 @@ module.exports.updateOneKnowChart = (req, res) =>{
     })
 }
 module.exports.deleteKnowChart = (req, res) =>{
-    Rename.deleteOne({_id: req.params.id})
-    .then(rename =>{
+    KnowChart.deleteOne({_id: req.params.id})
+    .then(kChart =>{
         res.json(kChart)
     })
     .catch(err=>{
