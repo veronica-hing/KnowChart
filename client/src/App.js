@@ -9,6 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={ <LoginReg />} />
         <Route path = "/knowchart" element = {<FlowEditor/>} />
+        <Route path = "/knowchart/:knowChartID" element = {<FlowEditor/>} />
       </Routes>
   );
 }
