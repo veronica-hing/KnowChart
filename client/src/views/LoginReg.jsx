@@ -25,7 +25,7 @@ const LoginReg = () => {
         withCredentials: true
       })
       // CHANGEME!
-      .then((res) => navigate("/api/knowchart/"))
+      .then((res) => navigate("/knowchart/"))
       .catch((err) => {
         console.log(err.response.data);
         const { errors } = err.response.data;
@@ -47,7 +47,7 @@ const LoginReg = () => {
         withCredentials: true
       })
       // CHANGEME!
-      .then((res) => navigate("/api/knowchart"))
+      .then((res) => navigate("/knowchart"))
       .catch((err) => console.log(err));
   };
 
