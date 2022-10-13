@@ -25,7 +25,7 @@ const LoginReg = () => {
         withCredentials: true
       })
       // CHANGEME!
-      .then((res) => navigate("/api/knowchart/"))
+      .then((res) => navigate("/knowchart/"))
       .catch((err) => {
         console.log(err.response.data);
         const { errors } = err.response.data;
@@ -47,7 +47,7 @@ const LoginReg = () => {
         withCredentials: true
       })
       // CHANGEME!
-      .then((res) => navigate("/api/knowchart"))
+      .then((res) => navigate("/knowchart"))
       .catch((err) => console.log(err));
   };
 
@@ -101,7 +101,7 @@ const LoginReg = () => {
         </p>
         <p>
           Password:
-          <input name="password" type="text" onChange={registerChangeHandler} />
+          <input name="password" type="password" onChange={registerChangeHandler} />
           {errorState.password ? (
             <small className="ml-1 text-danger font-weight-bold">WRONG</small>
           ) : null}
@@ -110,7 +110,7 @@ const LoginReg = () => {
           Confirm Password:
           <input
             name="confirmPassword"
-            type="text"
+            type="password"
             onChange={registerChangeHandler}
           />
           {errorState.confirmPassword ? (
@@ -129,7 +129,7 @@ const LoginReg = () => {
         </p>
         <p>
           Password:
-          <input name="password" type="text" onChange={loginChangeHandler} />
+          <input name="password" type="password" onChange={loginChangeHandler} />
         </p>
         <button type="submit" className="btn btn-primary">
           Submit
