@@ -2,6 +2,7 @@ import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import ReactFlow, {
+  Background,
   ReactFlowProvider,
   addEdge,
   useNodesState,
@@ -102,6 +103,7 @@ const Flow = () => {
             onDragOver={onDragOver}
             fitView
           >
+            <Background/>
             <Controls />
           </ReactFlow>
         </div>
