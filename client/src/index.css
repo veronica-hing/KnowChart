@@ -7,6 +7,26 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.container{
+  display: flex;
+  justify-content: center;
+}
+.card{
+  border: solid 1px blue;
+  border-radius: 15px;
+  margin-top: 10vh;
+  margin: 5vw;
+  text-align: center;
+  padding: 10px;
+}
+.form-inputs{
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  margin: 15px;
+
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

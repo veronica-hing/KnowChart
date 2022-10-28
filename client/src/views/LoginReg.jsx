@@ -8,21 +8,21 @@ const LoginReg = () => {
     lastName: "",
     email: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
   });
   const [errorState, setErrorState] = useState({});
   const navigate = useNavigate();
 
   const [loginState, setLoginState] = useState({
     email: "",
-    password: ""
+    password: "",
   });
 
   const registerSubmit = (e) => {
     e.preventDefault();
     axios
       .post("http://localhost:8000/api/users/register", registerState, {
-        withCredentials: true
+        withCredentials: true,
       })
       // CHANGEME!
       .then((res) => navigate("/knowchart/"))
@@ -44,7 +44,7 @@ const LoginReg = () => {
     e.preventDefault();
     axios
       .post("http://localhost:8000/api/users/login", loginState, {
-        withCredentials: true
+        withCredentials: true,
       })
       // CHANGEME!
       .then((res) => navigate("/knowchart"))
@@ -54,88 +54,106 @@ const LoginReg = () => {
   const registerChangeHandler = (e) => {
     setRegisterState({
       ...registerState,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const loginChangeHandler = (e) => {
     setLoginState({
       ...loginState,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   return (
-    <>
-      <h1>Register</h1>
-      <form onSubmit={registerSubmit}>
-        <p>
-          First Name:
-          <input
-            name="firstName"
-            type="text"
-            onChange={registerChangeHandler}
-          />
-          {errorState.firstName ? (
-            <small className="ml-1 text-danger font-weight-bold">WRONG</small>
-          ) : null}
-        </p>
-        <p>
-          Last Name:
-          <input name="lastName" type="text" onChange={registerChangeHandler} />
-          {errorState.lastName ? (
-            <small className="ml-1 text-danger font-weight-bold">WRONG</small>
-          ) : null}
-        </p>
-        <p>
-          Email:
-          <input name="email" type="text" onChange={registerChangeHandler} />
-          {errorState.email ? (
-            <small className="ml-1 text-danger font-weight-bold">WRONG</small>
-          ) : null}
-          {errorState.duplicate ? (
-            <small className="ml-1 text-danger font-weight-bold">
-              EMAIL EXISTS
-            </small>
-          ) : null}
-        </p>
-        <p>
-          Password:
-          <input name="password" type="password" onChange={registerChangeHandler} />
-          {errorState.password ? (
-            <small className="ml-1 text-danger font-weight-bold">WRONG</small>
-          ) : null}
-        </p>
-        <p>
-          Confirm Password:
-          <input
-            name="confirmPassword"
-            type="password"
-            onChange={registerChangeHandler}
-          />
-          {errorState.confirmPassword ? (
-            <small className="ml-1 text-danger font-weight-bold">WRONG</small>
-          ) : null}
-        </p>
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form>
-      <h1>Login</h1>
-      <form onSubmit={loginSubmit}>
-        <p>
-          Email:
-          <input name="email" type="text" onChange={loginChangeHandler} />
-        </p>
-        <p>
-          Password:
-          <input name="password" type="password" onChange={loginChangeHandler} />
-        </p>
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form>
-    </>
+    <div className="container">
+      <div className="card">
+        <form onSubmit={registerSubmit}>
+          <h1>Register</h1>
+          <div className="form-inputs">
+            <span>First Name:</span>
+            <input
+              name="firstName"
+              type="text"
+              onChange={registerChangeHandler}
+              placeholder="Barbara"
+            />
+            {errorState.firstName ? (
+              <small className="ml-1 text-danger font-weight-bold">WRONG</small>
+            ) : null}
+          </div>
+          <div className="form-inputs">
+            <span>Last Name:</span>
+            <input
+              name="lastName"
+              type="text"
+              onChange={registerChangeHandler}
+              placeholder="Rhubarb"
+            />
+            {errorState.lastName ? (
+              <small className="ml-1 text-danger font-weight-bold">WRONG</small>
+            ) : null}
+          </div>
+          <div className="form-inputs">
+            <span>Email:</span>
+            <input name="email" type="text" onChange={registerChangeHandler} />
+            {errorState.email ? (
+              <small className="ml-1 text-danger font-weight-bold">WRONG</small>
+            ) : null}
+            {errorState.duplicate ? (
+              <small className="ml-1 text-danger font-weight-bold">
+                EMAIL EXISTS
+              </small>
+            ) : null}
+          </div>
+          <div className="form-inputs">
+            <span>Password:</span>
+            <input
+              name="password"
+              type="password"
+              onChange={registerChangeHandler}
+            />
+            {errorState.password ? (
+              <small className="ml-1 text-danger font-weight-bold">WRONG</small>
+            ) : null}
+          </div>
+          <div className="form-inputs">
+            <span>Confirm Password:</span>
+            <input
+              name="confirmPassword"
+              type="password"
+              onChange={registerChangeHandler}
+            />
+            {errorState.confirmPassword ? (
+              <small className="ml-1 text-danger font-weight-bold">WRONG</small>
+            ) : null}
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        </form>
+      </div>
+      <div className="card">
+        <h1>Login</h1>
+        <form onSubmit={loginSubmit}>
+          <div className="form-inputs">
+            <span>Email:</span>
+            <input name="email" type="text" onChange={loginChangeHandler} />
+          </div>
+          <div className="form-inputs">
+            <span>Password:</span>
+            <input
+              name="password"
+              type="password"
+              onChange={loginChangeHandler}
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
   );
 };
 
